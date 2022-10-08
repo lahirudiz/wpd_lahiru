@@ -138,9 +138,11 @@ add_action( 'widgets_init', 'wpd_eyepax_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wpd_eyepax_scripts() {
+	wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css', array(), _S_VERSION );
 	wp_enqueue_style( 'wpd_eyepax-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'wpd_eyepax-style', 'rtl', 'replace' );
 
+	wp_enqueue_script( 'js-bundle', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js', array( 'jquery'));
 	wp_enqueue_script( 'wpd_eyepax-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
