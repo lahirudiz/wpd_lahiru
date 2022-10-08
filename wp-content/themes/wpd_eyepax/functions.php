@@ -181,3 +181,23 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/* Custom Post Type Start */
+function create_posttype() {
+	register_post_type( 'attractions',
+		// CPT Options
+		array (
+			'labels' => array(
+			'name' => __( 'Attractions' ),
+			'singular_name' => __( 'Attractions' )
+			),
+			'public' => true,
+			'has_archive' => false,
+			'supports' => array( 'title', 'editor', 'custom-fields', 'thumbnail' ),
+			'rewrite' => array('slug' => 'attractions'),
+			'taxonomies' => array( 'destination-topics', 'category' ),
+		)
+	);
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+/* Custom Post Type End */
